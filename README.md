@@ -194,3 +194,86 @@ Wählen Sie:
     * Minimale Kontaktzeit: 1 Stunde
 
  
+
+
+## Zusammenfassung Verlegungen
+
+Es kann zwischen Analysen pro Fachabteilung und pro Station gewechselt werden. 
+
+### Verlegungen
+Die Analyse wird für eine Fachabteilung, bzw. Station im Zentrum durchgeführt werden. Es kann zwischen zwei Perspektiven gewählt werden: Verlegungen weg von der Abteilung (`von`), oder Verlegungen hin zu der Abteilung (`nach`). Optional können nur Fälle mit ausgewählten ICD-Kodes oder ICD-Kapitelen betrachtet werden.
+
+### Auswahl Beobachtungszeitraum
+Für die Analyse wird ein Beobachtungszeitraum gewählt. 
+
+Als frühestes Datum für den Beginn des Beobachtungszeitraums kann der erste Tag gewählt werden, für den in der Input Datei für die gewählte Abteilung Daten vorliegen. Als spätestes Datum für den Beginn des Beobachtungszeitraums kann der letzte Tag gewählt werden, für den in der Input Datei für die gewählte Abteilung Daten vorliegen.
+
+Als frühestes Datum für das Ende des Beobachtungszeitraums kann der für den Beginn des Beobachtungszeitraums gewählte Tag gewählt werden. Als spätestes Datum für das Ende des Beobachtungszeitraums kann der letzte Tag gewählt werden, für den in der Input Datei für die gewählten Abteilung Daten vorliegen. 
+
+Für diese zusammenfassende Analyse werden große Zeiträume empfohlen (default: 1 Jahr).
+
+
+## Ergebnisse
+Das primäre Ergebnis der Analyse mit TRACE stellt ein interaktives Verlegungsnetzwerk dar (R-Paket 'networkD3').
+
+<b> Darstellung: </b>
+
+Die gewählte Fachabteilung/Station wird im Zentrum des Netwerks dargestellt. Abteilungen zu/von denen es Verlegungen gegeben hat, sind mit den zentralen Abteilung durch eine graue, gerichtete Kante verbunden. Ein Pfeil zeigt die Richtung der Verlegung an. Die größe der Knoten korreliert mit der Anzahl der Fälle gesamt auf der Abteilung im Beobachtungszeitraum. Dicke der Kanten korreliert negativ mit der effektiven Distanz der zwei Abteilungen (geringe Distanz, dicke Kante). Zusätzlich korreliert die Entfernung zweier Knoten positiv mit ihrer effektiven Distanz.
+
+Die effektive Distanz wird berechnet nach Brockmann und Helbing 2013 als 1-log(X/Y), wobei X die Anzahl an Fällen ist, die von A nach B verlegt werden, und Y die Anzahl an Fällen, die insgesamt von A verlegt wurden. Analog für `nach`.
+
+
+<b> Pop-up Fenster: </b>
+
+Über jeden Knoten können Detailinformationen abgefragt werden. Klickt man auf einen Knoten, öffnet sich ein Pop-up Fenster. Dort sind Informationen gegeben zu:
+
+* Abteilung
+* Fälle insgesamt
+* Fälle mit Verlegung (wird ein Fall von A-B-A-C verlegt, gibt es zwei Verlegungen von A, sodass der Fall 2x gezählt wird; daher kann Fälle mit Verlegungen u.U. größer sein als Fälle insgesamt)
+* Anteil Fälle von Abteilung <zentral> nach Abteilung
+* Effektive Distanz basierend auf verlegten Fällen auf der zentralen Abteilung
+* Effektive Distanz basierend auf allen Fällen auf der zentralen Abteilung
+
+
+<b> Allgemeine Informationen: </b>
+
+Oberhalb der Visualisierung sind Basis-Informationen zusammengefasst:
+
+* Konfiguration der Analyse
+    * Von
+    * Nach
+    * ICD-Filter
+    * Beobachtungszeitraum
+
+<b> xlsx-Export: </b>
+
+TRACE bietet die Möglichkeit, die Ergebnisse als xlsx-File zu exportieren. Die folgenden Informationen sind enthalten:
+
+* Von
+* ICD-Filter
+* Zeitraum
+* Fälle insgesamt
+* Fälle mit Verlegung
+* Details
+    * Verlegt von Abteilung nach
+    * Anzahl Patienten absolut
+    * Anzahl Patienten relativ
+    * Effektive Distanz basierend auf verlegten Fällen
+    * Effektive Distanz basierend auf allen Fällen 
+
+
+<b> Beispiel: </b>
+
+Wählen Sie:
+
+* Stationen
+* Verlegungen: von
+* Station: Station 12A
+* Hauptdiagnose nach ICD-Code-Filtern: nein
+* Auswahl Beobachtungszeitraum
+    * Beginn des Beobachtungszeitraums: 2023-01-01
+    * Ende des Beobachtungszeitraums: 2024-01-01
+
+
+
+
