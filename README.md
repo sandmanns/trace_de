@@ -230,7 +230,7 @@ Die effektive Distanz wird berechnet nach Brockmann und Helbing 2013 als 1-log(X
 * Abteilung
 * Fälle insgesamt
 * Fälle mit Verlegung (wird ein Fall von A-B-A-C verlegt, gibt es zwei Verlegungen von A, sodass der Fall 2x gezählt wird; daher kann Fälle mit Verlegungen u.U. größer sein als Fälle insgesamt)
-* Anteil Fälle von Abteilung <zentral> nach Abteilung
+* Anteil Fälle von Abteilung \<zentral\> nach Abteilung
 * Effektive Distanz basierend auf verlegten Fällen auf der zentralen Abteilung
 * Effektive Distanz basierend auf allen Fällen auf der zentralen Abteilung
 
